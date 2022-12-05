@@ -12,8 +12,7 @@ namespace CRUD_Senior.Datos
     {
         public static bool guardarUsuario(Usuarios e)
         {
-            try
-            {
+            
                 Conexion con = new Conexion();
                 string sql = "INSERT INTO tb_usuarios VALUES('" + e.Nombres + "','" + e.ApellidoPaterno + "','" + e.ApellidoMaterno + "','" + e.Puesto + "','" + e.Edad + "','" + e.Correo + "','" + e.FechaNacimiento + "')";
                 SqlCommand comando = new SqlCommand(sql,con.conectar());
@@ -25,10 +24,6 @@ namespace CRUD_Senior.Datos
 
                 con.Desconectar();
 
-            }catch(Exception ex)
-            {
-                return false;
-            }
         }
         public static Usuarios consultar(string correo)
         {
@@ -56,8 +51,6 @@ namespace CRUD_Senior.Datos
         }
         public static bool actualizar(Usuarios e)
         {
-            try
-            {
                 Conexion con = new Conexion();
                 string sql = "UPDATE tb_usuarios SET nombres='" + e.Nombres + "',apellidoPaterno='" + e.ApellidoPaterno + "',apellidoMaterno='" + e.ApellidoMaterno + "',puesto='" + e.Puesto + "',numeroTelefono='" + e.Edad + "',fechaNacimiento='" + e.FechaNacimiento + "'  where correo='" + e.Correo + "'";
                 SqlCommand comando = new SqlCommand(sql, con.conectar());
@@ -70,20 +63,10 @@ namespace CRUD_Senior.Datos
                 else { 
                     con.Desconectar();
                     return false;
-                } 
-
-                
-
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
+                }    
         }
         public static bool borrar(string correo)
         {
-            try
-            {
                 Conexion con = new Conexion();
                 string sql = "DELETE FROM tb_usuarios where correo='" + correo + "'";
                 SqlCommand comando = new SqlCommand(sql, con.conectar());
@@ -98,14 +81,6 @@ namespace CRUD_Senior.Datos
                     con.Desconectar();
                     return false;
                 }
-
-
-
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
         }
     }
 }
